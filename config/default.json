@@ -1,0 +1,46 @@
+{
+    "DB": {
+        "HOST": "localhost",
+        "PORT": "27017",
+        "DATABASE": "frill",
+        "MONGOOSE": {
+            "useMongoClient": true,
+            "autoIndex": true,
+            "poolSize": 10,
+            "bufferMaxEntries": 0
+        }
+    },
+    "DEBUG_MODE": {
+        "MODE": true
+    },
+    "APP": {
+        "URL": "localhost",
+        "APIHOST": "http://localhost"
+    },
+    "roles": {
+        "superadmin": 1
+    },
+    "PORTS": {
+        "superadmin": 3000
+    },
+    "routes": {
+        "AUTH": "/auth"
+    },
+    "secret": {
+        "jwt": "frill@13$ecure@007"
+    },
+    "roles": {
+        "superadmin": 1,
+        "groupadmin": 3
+    },
+    "s3": {
+        "accessKeyId": "",
+        "secretAccessKey": "",
+        "bucketName": "",
+        "bucketUrl": ""
+    },
+    "googleKey": {
+        "key": "",
+        "provider": ""
+    }
+}

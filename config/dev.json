@@ -1,0 +1,49 @@
+{
+    "DB": {
+        "HOST": "54.185.127.165",
+        "PORT": "57368",
+        "USERNAME": "PixMagic",
+        "PASSWORD": "dHysfdRsvw80",
+        "DATABASE": "PixMagic",
+        "MONGOOSE": {
+            "useMongoClient": true,
+            "autoIndex": true,
+            "poolSize": 10,
+            "bufferMaxEntries": 0
+        },
+        "AUTH": true
+    },
+    "DEBUG_MODE": {
+        "MODE": true
+    },
+    "APP": {
+        "URL": "54.185.127.165",
+        "APIHOST": "http://54.185.127.165"
+    },
+    "roles": {
+        "superadmin": 1
+    },
+    "PORTS": {
+        "superadmin": 5006
+    },
+    "routes": {
+        "AUTH": "/auth"
+    },
+    "secret": {
+        "jwt": "PixMagic@13$ecure@007"
+    },
+    "roles": {
+        "superadmin": 1,
+        "groupadmin": 3
+    },
+    "s3": {
+        "accessKeyId": "",
+        "secretAccessKey": "",
+        "bucketName": "",
+        "bucketUrl": ""
+    },
+    "googleKey": {
+        "key": "",
+        "provider": ""
+    }
+}
