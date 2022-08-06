@@ -99,7 +99,8 @@ export const checkPasswordToken = async function (req, res, next) {
     res.jsonp(outputJSON);
   }
 }
- 
+
+
 export const recoverPassword = async function (req, res, next) {
   var outputJSON = '';
   try {
@@ -119,33 +120,29 @@ export const recoverPassword = async function (req, res, next) {
   }
 }
 // Forgot Passsword  checkPasswordToken
-export const forgotPassword = async function (req, res, next) {
+export const forgotpassword = async function (req, res, next) {
   var outputJSON = '';
   try {
-    const tempPassword = GenerateRandom(10, true);
-    let user = await Admin.findOneByCondition({ email: req.query.email });
+    const tempPassword = GenerateRandom(6, true);
+    let user = await User.findOneByCondition({ email: req.query.email });
     if (user) {
       let date = new Date();
       let expireTime = date.setHours(date.getHours() + 1)
-      const updatedData = await Admin.updateUserById(user._id, { passwordtoken: md5(tempPassword), passwordexpiretime: expireTime });
-      let EmailtypeId = await EmailType.findOneByCondition({ "name.en": "Forgot Password" });
-      let template = await EmailTemplate.findOneByCondition({ email_type: EmailtypeId._id });
-
-      template.content['en'] = template.content['en'].replace(/{firstName}/g, user.fullName);
-      template.content['en'] = template.content['en'].replace(/{lastName}/g, '');
-      template.content['en'] = template.content['en'].replace(/{forgotPasswordLink}/g, `${APIHOST}:3005/recover-password/${user.passwordtoken}`);
+      const updatedData = await User.updateUserById(user._id, { passwordtoken: md5(tempPassword), passwordexpiretime: expireTime });
+     
       var data = {
         from: template.email_from,
         to: user.email,
         subject: template.subject['en'],
+
         html: template.content['en'].split('"').join(""),
       }
 
-      await sendEmail(data).then(result => {
-        return res.jsonp({ 'status': 'success', "messageID": responseCodes.successCode, 'message': messages.EmailSentSucessfully })
-      }).catch(err => {
-        return res.jsonp({ 'status': 'success', "messageID": responseCodes.successCode, 'message': messages.EmailSentSucessfully })
-      })
+      // await sendEmail(data).then(result => {
+      //   return res.jsonp({ 'status': 'success', "messageID": responseCodes.successCode, 'message': messages.EmailSentSucessfully })
+      // }).catch(err => {
+      //   return res.jsonp({ 'status': 'success', "messageID": responseCodes.successCode, 'message': messages.EmailSentSucessfully })
+      // })
       // const updatedData = await Admin.updateUserById(user._id, { password: md5(tempPassword) });
       // outputJSON = { 'status': 'success', "messageID": responseCodes.successCode, 'message': `${messages.passwordCreated} ${tempPassword}`, 'data': {} };
     } else {

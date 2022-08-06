@@ -5,7 +5,7 @@
 * @Created On: 10th July., 2022
 */
 import express from "express";
-import { registerUser, login } from "../controllers/auth/index.js";
+import { registerUser, login ,forgotpassword} from "../controllers/auth/index.js";
 import { addUserUnit,getUserUnit } from "../controllers/unit/index.js";
 const auth = express.Router();
 
@@ -113,4 +113,5 @@ auth.post('/adduserunit', addUserUnit);
 auth.get('/unitlist', getUserUnit);
 
 
+auth.post('/forgotpassword', forgotpassword);
 export default auth; 
